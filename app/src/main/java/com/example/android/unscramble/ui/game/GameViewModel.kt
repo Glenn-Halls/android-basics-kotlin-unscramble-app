@@ -5,13 +5,15 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
 
-    private var score = 0
+    private var _score = 0
     private var currentWordCount = 0
     private lateinit var _currentScrambledWord: String
     private var wordsList: MutableList<String> = mutableListOf()
     private lateinit var currentWord: String
     val currentScrambledWord: String
         get() = _currentScrambledWord
+    val score: Int
+        get() = _score
 
 
     init {
@@ -37,6 +39,17 @@ class GameViewModel : ViewModel() {
             ++currentWordCount
             wordsList.add(currentWord)
         }
+    }
+
+    private fun increaseScore() {
+        _score += SCORE_INCREASE
+    }
+
+    fun isUserWordCorrect(playerWord: String): Boolean {
+        return if (playerWord.equals(currentWord, true)) {
+            increaseScore()
+            true
+        } else false
     }
 
     fun nextWord(): Boolean {
