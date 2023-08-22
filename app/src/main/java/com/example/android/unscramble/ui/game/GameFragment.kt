@@ -63,14 +63,6 @@ class GameFragment : Fragment() {
         binding.skip.setOnClickListener { onSkipWord() }
         binding.lifecycleOwner = viewLifecycleOwner
         // Update the UI
-        viewModel.score.observe(viewLifecycleOwner) {
-            binding.score.text = getString(R.string.score, it)
-        }
-        viewModel.currentWordCount.observe(viewLifecycleOwner) {
-            binding.wordCount.text = getString(
-                R.string.word_count, it, MAX_NO_OF_WORDS
-            )
-        }
     }
 
     override fun onDetach() {
