@@ -66,10 +66,6 @@ class GameFragment : Fragment() {
         viewModel.score.observe(viewLifecycleOwner) {
             binding.score.text = getString(R.string.score, it)
         }
-        //Observe the currentScrambledWord LiveData
-        viewModel.currentScrambledWord.observe(viewLifecycleOwner) { newWord ->
-            binding.textViewUnscrambledWord.text = newWord
-        }
         viewModel.currentWordCount.observe(viewLifecycleOwner) {
             binding.wordCount.text = getString(
                 R.string.word_count, it, MAX_NO_OF_WORDS
